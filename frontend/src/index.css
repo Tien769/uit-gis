@@ -1,0 +1,88 @@
+body {
+  margin: 0px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#Wrapper {
+  height: 100%;
+  position: relative;
+}
+
+.webmap {
+  height: 100vh;
+  width: 75vw;
+}
+
+#ChangeLayer {
+  position: absolute;
+  bottom: 2em;
+  left: 2em;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 0.1em;
+}
+
+h2 {
+  text-align: center !important;
+}
+
+.info {
+  display: inline-block;
+  position: absolute;
+  right: 0em;
+  top: 0em;
+  width: 25vw;
+  padding: 0em 1em 1em;
+  border: 0.25px solid tomato;
+  height: 100vh;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 2em 0em;
+}
+
+.row {
+  display: flex;
+  flex-basis: 100%;
+  justify-content: space-between;
+  border-right: 0.25px solid black;
+  border-top: 0.25px solid black;
+}
+
+.row:nth-child(1) {
+  border-right: 2px solid black;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  background: tomato;
+  color: white;
+}
+.row:nth-child(1) .col {
+  border-left: 2px solid black;
+}
+
+.row.header {
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+}
+.row.header .col {
+  border-left: 2px solid black;
+}
+
+.row:nth-last-child(1) {
+  border-bottom: 0.25px solid black;
+}
+
+.col {
+  display: flex;
+  justify-content: center;
+  flex: 1 100%;
+  padding: 0.5em 1em;
+  border-left: 0.25px solid black;
+}
