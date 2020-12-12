@@ -88,6 +88,10 @@ const InfoPanel = () => {
 function App() {
   const mapRef = useRef(null);
   const [layer, setLayer] = useState(true);
+  const [year, setYear] = useState(0);
+
+  const incrementYear = () => setYear(y => y + 5);
+  const decrementYear = () => setYear(y => (y - 5 < 0 ? y : y - 5));
 
   useEffect(() => {
     // lazy load the required ArcGIS API for JavaScript modules and CSS
@@ -112,7 +116,7 @@ function App() {
           map.add(layer);
         });
       } else
-        getDisctrictsLayer().then(layer => {
+        getDisctrictsLayer(year).then(layer => {
           map.add(layer);
         });
 
@@ -122,12 +126,26 @@ function App() {
         }
       };
     });
-  }, [layer]);
+  }, [layer, year]);
+
+  useEffect(() => {
+    console.log(`YEAR: ${year}`);
+  }, [year]);
 
   return (
     <div id='Wrapper'>
       <div className='webmap' ref={mapRef} />
       <ChangeLayerButton handler={() => setLayer(!layer)} />
+      {layer ? null : (
+        <div id='Prediction'>
+          <span>
+            <button onClick={decrementYear}>-5</button>
+          </span>
+          <span>
+            <button onClick={incrementYear}>+5</button>
+          </span>
+        </div>
+      )}
       <InfoPanel />
     </div>
   );
@@ -171,11 +189,11 @@ const getTerritoryLayer = () =>
       })
   );
 
-const getDisctrictsLayer = async () =>
+const getDisctrictsLayer = async (year: number) =>
   loadModules(['esri/layers/GeoJSONLayer']).then(
     ([GeoJSONLayer]) =>
       new GeoJSONLayer({
-        url: 'http://localhost:3001/district',
+        url: `http://localhost:3001/dis/${year > 0 ? `${year}` : ''}`,
         outFields: ['Province', 'District', 'Pop_2009'],
         popupTemplate: {
           title: 'Dân số {District}, {Province}',
@@ -195,12 +213,9 @@ const getDisctrictsLayer = async () =>
             type: 'color',
             field: 'Pop_2009',
             stops: [
-              { value: 0, color: '#ffffff' },
-              // { value: 100000, color: '#ff9999' },
-              // { value: 300000, color: '#ff3333' },
-              { value: 400000, color: '#ff0000' },
-              // { value: 600000, color: '#cc0000' },
-              { value: 790000, color: '#cc0000' },
+              { value: 0, color: [255, 255, 255, 0.7] },
+              { value: 400000, color: [255, 0, 0, 0.5] },
+              { value: 790000, color: [204, 0, 0, 0.5] },
             ],
           },
         },
