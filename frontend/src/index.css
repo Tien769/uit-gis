@@ -92,3 +92,40 @@ h2 {
   bottom: 2em;
   left: 15em;
 }
+
+#Prediction input {
+  cursor: default;
+  text-align: center;
+  width: 7em;
+  margin: 0em 0.5em;
+}
+
+#Notation {
+  position: absolute;
+  bottom: 2em;
+  right: 30em;
+}
+
+#Notation > div {
+  display: inline-block;
+  margin: 0em 3em;
+  text-align: center;
+}
+
+#Notation > div:nth-child(1) > div:nth-last-child(1) {
+  width: 6em;
+  height: 1.5em;
+  background-color: #ffcccc;
+}
+
+#Notation > div:nth-child(2) > div:nth-last-child(1) {
+  width: 6em;
+  height: 1.5em;
+  background-color: #ff6666;
+}
+
+#Notation > div:nth-child(3) > div:nth-last-child(1) {
+  width: 6em;
+  height: 1.5em;
+  background-color: #ff0000;
+}

@@ -7,9 +7,9 @@ interface PlainObject {
 
 const ChangeLayerButton = (props: { handler: () => void }) => {
   return (
-    <button id='ChangeLayer' onClick={props.handler}>
-      Change Layer
-    </button>
+    <div id='ChangeLayer'>
+      <button onClick={props.handler}>Change Layer</button>
+    </div>
   );
 };
 
@@ -137,13 +137,36 @@ function App() {
       <div className='webmap' ref={mapRef} />
       <ChangeLayerButton handler={() => setLayer(!layer)} />
       {layer ? null : (
-        <div id='Prediction'>
-          <span>
-            <button onClick={decrementYear}>-5</button>
-          </span>
-          <span>
-            <button onClick={incrementYear}>+5</button>
-          </span>
+        <>
+          <div id='Prediction'>
+            {year + 2020 > 2020 ? (
+              <span>
+                <button onClick={decrementYear}>-5</button>
+              </span>
+            ) : null}
+            <span>
+              <input value={`Year: ${year + 2020}`} readOnly />
+            </span>
+            <span>
+              <button onClick={incrementYear}>+5</button>
+            </span>
+          </div>
+        </>
+      )}
+      {layer ? null : (
+        <div id='Notation'>
+          <div>
+            <div>{'<400000'}</div>
+            <div />
+          </div>
+          <div>
+            <div>{'400000-700000'}</div>
+            <div />
+          </div>
+          <div>
+            <div>{'>700000'}</div>
+            <div />
+          </div>
         </div>
       )}
       <InfoPanel />
