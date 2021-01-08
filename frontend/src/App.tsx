@@ -1,5 +1,6 @@
 import { loadModules } from 'esri-loader';
 import { useEffect, useRef, useState } from 'react';
+import './App.css';
 
 interface PlainObject {
   [key: string]: any;
@@ -8,7 +9,7 @@ interface PlainObject {
 const ChangeLayerButton = (props: { handler: () => void }) => {
   return (
     <div id='ChangeLayer'>
-      <button onClick={props.handler}>Change Layer</button>
+      <button onClick={props.handler}>View detail</button>
     </div>
   );
 };
@@ -170,6 +171,19 @@ function App() {
         </div>
       )}
       <InfoPanel />
+      {/* <div id='New'>
+        <form>
+          <div>
+            <h1>Please submit your dataset for validation</h1>
+          </div>
+          <div>
+            <input type='file' />
+          </div>
+          <div>
+            <input type='submit' value='Submit' />
+          </div>
+        </form>
+      </div> */}
     </div>
   );
 }
@@ -244,5 +258,4 @@ const getDisctrictsLayer = async (year: number) =>
         },
       })
   );
-
 export default App;
