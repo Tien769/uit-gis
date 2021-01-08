@@ -1,3 +1,5 @@
 #!/bin/bash
 
-cd backend/ && yarn run dev
+cd backend/ 
+yarn run dev
+cd ..
